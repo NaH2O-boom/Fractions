@@ -1,0 +1,142 @@
+პირობა:
+
+შექმენით კლასი Fraction _ „წილადი“. საჭიროა მრიცხველისა და მნიშვნელის
+კლასის წევრ ცვლადებად (member variables) შენახვა. შექმენით წევრი ფუნქციები
+წევრ ცვლადებში მონაცემთა შესატანად, და არითმეტიკული ოპერაციების (მიმატება,
+გამოკლება, გამრავლება, გაყოფა და სხვა) შესასრულებლად.გამოიყენეთ ინკაფსულაცია.
+
+
+პროგრამა: 
+
+#include <iostream>
+#include<string>
+using namespace std;
+class Fraction {
+private:
+
+	int numerator, denuminator;
+public:
+	Fraction()
+	{}
+	Fraction(int numerator, int denuminator) {
+		this->numerator = numerator;
+		this->denuminator = denuminator;
+	}
+	~Fraction() {}
+	void setN(int a) {
+		this->numerator = a;
+	}
+	void setD(int a) {
+		this->denuminator = a;
+	}
+	int getN() {
+		return numerator;
+	}
+	int getD() {
+		return denuminator;
+	}
+
+
+};
+void addF(Fraction a) {
+	int x, y;
+	Fraction b, d;
+	cout << "enter numerator and denuminator: " << endl;
+	cin >> x;
+	cout << "-" << endl;
+	cin >> y;
+	b.setN(x);
+	b.setD(y);
+	if ((a.getD()) != (b.getD())) {
+		a.setN(a.getN() * b.getD());
+		b.setN(b.getN() * a.getD());
+		a.setD(a.getD() * b.getD());
+		b.setD(a.getD());
+		d.setD(b.getD());
+		d.setN(a.getN() + b.getN());
+	}
+	else if (a.getD() == b.getD()) {
+		d.setN(a.getN() + b.getN());
+		d.setD(b.getD());
+	}
+	cout << d.getN() << "/" << d.getD();
+}
+void subF(Fraction a) {
+	int x, y;
+	Fraction b, d;
+	cout << "enter numerator and denuminator: " << endl;
+	cin >> x;
+	cout << "-" << endl;
+	cin >> y;
+	b.setN(x);
+	b.setD(y);
+	if ((a.getD()) != (b.getD())) {
+		a.setN(a.getN() * b.getD());
+		b.setN(b.getN() * a.getD());
+		a.setD(a.getD() * b.getD());
+		b.setD(a.getD());
+		d.setD(b.getD());
+		d.setN(a.getN() - b.getN());
+	}
+	else if (a.getD() == b.getD()) {
+		d.setN(a.getN() - b.getN());
+		d.setD(b.getD());
+	}
+	cout << d.getN() << "/" << d.getD();
+}
+void TimesF(Fraction a) {
+	int x, y;
+	Fraction b, d;
+	cout << "enter numerator and denuminator: " << endl;
+	cin >> x;
+	cout << "-" << endl;
+	cin >> y;
+	b.setN(x);
+	b.setD(y);
+	d.setN(a.getN() * b.getN());
+	d.setD(a.getD() * b.getD());
+	cout << d.getN() << "/" << d.getD();
+}
+void divF(Fraction a) {
+	int x, y;
+	Fraction b, d;
+	cout << "enter numerator and denuminator: " << endl;
+	cin >> x;
+	cout << "-" << endl;
+	cin >> y;
+
+	swap(x, y);
+		b.setN(x);
+		b.setD(y);
+		d.setN(a.getN() * b.getN());
+		d.setD(a.getD() * b.getD());
+		cout << d.getN() << "/" << d.getD();
+}
+void chkOP(string op, Fraction a) {
+	cin >> op;
+	if (op == "+") {
+		addF(a);
+	}
+	else if (op == "-") {
+		subF(a);
+	}
+	else if (op == "*") {
+		TimesF(a);
+	}
+	else if (op == "/") {
+		divF(a);
+	}
+}
+int main() {
+	Fraction a;
+	string op;
+	int x, y;
+	cout << "enter your Fraction: " << endl;
+	cin >> x ;
+	cout <<"-"<<endl;
+	cin >> y;
+	a.setN(x);
+	a.setD(y);
+	cout << "choose your operation from : + - * /"<<endl;
+	chkOP(op,a);
+}
